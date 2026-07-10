@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260710-05-9ed98a3"}');</script><script src="/_sdk/f432b76fb310b513.telemetry_sdk.js" integrity="sha512-9FJQ55EKmmqhyyik8BhrMVfm0+iYYfb8uOlRsjtkxJMEI97qOVEI4PnHohDjQAtvAep0IOEpdQ64eki0sz62ug=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AeroGuard Historical Analytics</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <style>
+        body { font-family: 'DM Sans', sans-serif; }
+        .stat-card { transition: transform 0.2s; }
+        .stat-card:hover { transform: translateY(-2px); }
+    </style>
+  <script src="/_sdk/0179d719c431a79e.data_sdk.js" type="text/javascript" integrity="sha512-OsRvJkI5GkC3MJQcgotQYotpzrMSX415GiKKgvYdxQEEkzD/fdchShO2FMSy0PJr/tiINMXOk5Vl2zAgg6bUiA=="></script>
+  <script src="/_sdk/9432170dbd2ae0df.resizing_sdk.js" type="text/javascript" integrity="sha512-FeT+58sb1f9ejWPWFjCbJvTT+SDwGV+ngrHUnlO7TWEOoqwOLj6p256kO3vOL7DIWl1cIgrobiof8v2bOigwPg=="></script>
+ </head>
+ <body data-template-id="__page-root" class="min-h-screen w-full" style="background: linear-gradient(145deg, rgb(15, 23, 42), rgb(30, 41, 59));">
+  <header class="px-6 py-8 md:px-12">
+   <div class="max-w-6xl mx-auto">
+    <div class="flex items-center gap-3 mb-2">
+     <i data-lucide="wind" style="width:28px;height:28px;color:#10b981;"></i>
+     <h1 data-template-id="page-title" class="canva-text" style="color: rgb(241, 245, 249); font-weight: 700; font-style: normal; font-size: 32px;">AeroGuard Analytics</h1>
+    </div>
+    <p data-template-id="page-subtitle" class="canva-text" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">Historical air quality data for Coimbatore, Tamil Nadu</p>
+   </div>
+  </header>
+  <main class="px-6 md:px-12 pb-12">
+   <div class="max-w-6xl mx-auto space-y-8">
+    <!-- Stat Cards -->
+    <section class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+     <div data-template-id="card-aqi" class="canva-card stat-card rounded-xl p-5" style="background: rgba(255, 255, 255, 0.05);">
+      <p data-template-id="card-aqi-label" class="canva-text text-sm uppercase tracking-wide" style="color: rgb(16, 185, 129); font-weight: 400; font-style: normal; font-size: 16px;">Avg AQI</p>
+      <p data-template-id="card-aqi-value" class="canva-text text-3xl font-bold mt-1" style="color: rgb(241, 245, 249); font-weight: 700;">142</p>
+     </div>
+     <div data-template-id="card-pm25" class="canva-card stat-card rounded-xl p-5" style="background: rgba(255, 255, 255, 0.05);">
+      <p data-template-id="card-pm25-label" class="canva-text text-sm uppercase tracking-wide" style="color: rgb(245, 158, 11); font-weight: 400; font-style: normal; font-size: 16px;">PM2.5</p>
+      <p data-template-id="card-pm25-value" class="canva-text text-3xl font-bold mt-1" style="color: rgb(241, 245, 249); font-weight: 700;">58 µg/m³</p>
+     </div>
+     <div data-template-id="card-pm10" class="canva-card stat-card rounded-xl p-5" style="background: rgba(255, 255, 255, 0.05);">
+      <p data-template-id="card-pm10-label" class="canva-text text-sm uppercase tracking-wide" style="color: rgb(139, 92, 246); font-weight: 400; font-style: normal; font-size: 16px;">PM10</p>
+      <p data-template-id="card-pm10-value" class="canva-text text-3xl font-bold mt-1" style="color: rgb(241, 245, 249); font-weight: 700;">97 µg/m³</p>
+     </div>
+     <div data-template-id="card-o3" class="canva-card stat-card rounded-xl p-5" style="background: rgba(255, 255, 255, 0.05);">
+      <p data-template-id="card-o3-label" class="canva-text text-sm uppercase tracking-wide" style="color: rgb(6, 182, 212); font-weight: 400; font-style: normal; font-size: 16px;">Ozone</p>
+      <p data-template-id="card-o3-value" class="canva-text text-3xl font-bold mt-1" style="color: rgb(241, 245, 249); font-weight: 700;">34 ppb</p>
+     </div>
+    </section><!-- Chart -->
+    <section data-template-id="chart-section" class="canva-section rounded-xl p-6" style="background: rgba(255, 255, 255, 0.03);">
+     <h2 data-template-id="chart-title" class="canva-text font-semibold mb-4" style="color: rgb(226, 232, 240); font-weight: 600; font-style: normal; font-size: 24px;">Monthly AQI Trend (2026)</h2>
+     <canvas id="aqi-chart" class="w-full" height="220"></canvas>
+    </section><!-- Table -->
+    <section data-template-id="table-section" class="canva-section rounded-xl p-6 overflow-x-auto" style="background: rgba(255, 255, 255, 0.03);">
+     <h2 data-template-id="table-title" class="canva-text font-semibold mb-4" style="color: rgb(226, 232, 240); font-weight: 600; font-style: normal; font-size: 24px;">Recent Readings</h2>
+     <table class="w-full text-sm">
+      <thead>
+       <tr class="border-b border-white/10">
+        <th data-template-id="th-date" class="canva-text text-left py-2 font-medium" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">Date</th>
+        <th data-template-id="th-aqi" class="canva-text text-left py-2 font-medium" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">AQI</th>
+        <th data-template-id="th-pm25" class="canva-text text-left py-2 font-medium" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">PM2.5</th>
+        <th data-template-id="th-status" class="canva-text text-left py-2 font-medium" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">Status</th>
+       </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+     </table>
+    </section>
+   </div>
+  </main>
+  <script src="/_sdk/719055fef2a85d14.editing_sdk.js" integrity="sha512-kFqrdGgIiTOsu307feB5Cy3JVP9IayftsmCIZ0csxYBGuBmJQPhyvcnmKR8F0fTW97h5s1gAvz3SumI8zJ6OxQ=="></script>
+  <script>
+        lucide.createIcons();
+
+        // Chart
+        const canvas = document.getElementById('aqi-chart');
+        const ctx = canvas.getContext('2d');
+        const data = [120, 135, 162, 148, 178, 155, 142, 130, 145, 160, 138, 142];
+        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+        function drawChart() {
+            const w = canvas.width = canvas.offsetWidth;
+            const h = canvas.height = 220;
+            const pad = {t:20,r:20,b:30,l:40};
+            const cw = w - pad.l - pad.r;
+            const ch = h - pad.t - pad.b;
+            const max = 200, min = 80;
+
+            ctx.clearRect(0,0,w,h);
+
+            // Grid
+            ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+            ctx.lineWidth = 1;
+            for(let i=0;i<=4;i++){
+                const y = pad.t + (ch/4)*i;
+                ctx.beginPath(); ctx.moveTo(pad.l,y); ctx.lineTo(w-pad.r,y); ctx.stroke();
+            }
+
+            // Line
+            const grad = ctx.createLinearGradient(0,pad.t,0,h-pad.b);
+            grad.addColorStop(0,'#10b981');
+            grad.addColorStop(1,'#059669');
+            ctx.strokeStyle = grad;
+            ctx.lineWidth = 2.5;
+            ctx.lineJoin = 'round';
+            ctx.beginPath();
+            data.forEach((v,i)=>{
+                const x = pad.l + (cw/(data.length-1))*i;
+                const y = pad.t + ch - ((v-min)/(max-min))*ch;
+                i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+            });
+            ctx.stroke();
+
+            // Dots
+            data.forEach((v,i)=>{
+                const x = pad.l + (cw/(data.length-1))*i;
+                const y = pad.t + ch - ((v-min)/(max-min))*ch;
+                ctx.beginPath(); ctx.arc(x,y,3.5,0,Math.PI*2);
+                ctx.fillStyle='#10b981'; ctx.fill();
+            });
+
+            // Labels
+            ctx.fillStyle = 'rgba(255,255,255,0.5)';
+            ctx.font = '11px DM Sans';
+            ctx.textAlign = 'center';
+            months.forEach((m,i)=>{
+                const x = pad.l + (cw/(data.length-1))*i;
+                ctx.fillText(m, x, h - 8);
+            });
+        }
+        drawChart();
+        window.addEventListener('resize', drawChart);
+
+        // Table
+        const readings = [
+            {date:'2026-07-09', aqi:142, pm25:58, status:'Moderate'},
+            {date:'2026-07-08', aqi:138, pm25:52, status:'Moderate'},
+            {date:'2026-07-07', aqi:160, pm25:67, status:'Unhealthy (SG)'},
+            {date:'2026-07-06', aqi:145, pm25:61, status:'Unhealthy (SG)'},
+            {date:'2026-07-05', aqi:130, pm25:48, status:'Moderate'},
+        ];
+        const tbody = document.getElementById('table-body');
+        readings.forEach(r=>{
+            const tr = document.createElement('tr');
+            tr.className = 'border-b border-white/5';
+            const statusColor = r.aqi > 150 ? '#f59e0b' : '#10b981';
+            tr.innerHTML = `<td class="py-2 text-gray-300">${r.date}</td><td class="py-2 text-white font-medium">${r.aqi}</td><td class="py-2 text-gray-300">${r.pm25} µg/m³</td><td class="py-2"><span style="color:${statusColor}">${r.status}</span></td>`;
+            tbody.appendChild(tr);
+        });
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a18fffcaf301a8fc',t:'MTc4MzY5MTAyNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body></html>
